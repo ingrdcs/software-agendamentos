@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agendamento Online</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="pub-body">
+
+<div class="public-wrap">
+  <div class="public-header">
+    <div class="public-logo">Agenda<span>Fácil</span></div>
+    <div class="public-logo" id="pub-nome-negocio" style="font-size:20px;margin-top:6px;color:var(--text)"></div>
+    <div class="public-sub" id="pub-sub-negocio"></div>
+  </div>
+
+  <div class="step-indicator">
+    <div class="step-dot active" id="dot0"></div>
+    <div class="step-dot" id="dot1"></div>
+    <div class="step-dot" id="dot2"></div>
+    <div class="step-dot" id="dot3"></div>
+  </div>
+
+  <div class="pub-card">
+
+    <!-- PASSO 0: Escolher serviço -->
+    <div class="pub-step" id="pub-step-0">
+      <div class="pub-section-title">Escolha o serviço</div>
+      <div class="service-grid" id="service-grid"></div>
+      <button class="pub-btn" onclick="pubNext(0)">Continuar →</button>
+    </div>
+
+    <!-- PASSO 1: Escolher horário -->
+    <div class="pub-step" id="pub-step-1" style="display:none">
+      <div class="pub-section-title">Escolha o horário</div>
+      <div style="font-size:13px;color:var(--text2);margin-bottom:14px">
+        📅 <span id="pub-data-label"></span>
+      </div>
+      <div class="time-slots" id="time-slots"></div>
+      <div style="display:flex;gap:10px">
+        <button class="pub-btn secondary" onclick="pubVoltar(0)" style="flex:0 0 auto;width:auto;padding:14px 20px">← Voltar</button>
+        <button class="pub-btn" onclick="pubNext(1)">Continuar →</button>
+      </div>
+    </div>
+
+    <!-- PASSO 2: Dados pessoais -->
+    <div class="pub-step" id="pub-step-2" style="display:none">
+      <div class="pub-section-title">Seus dados</div>
+      <input class="pub-input" id="pub-nome-cliente" placeholder="Seu nome completo" autocomplete="name">
+      <input class="pub-input" id="pub-telefone" placeholder="WhatsApp com DDD: (27) 9 9999-0000" type="tel" autocomplete="tel">
+      <div class="confirm-box" id="confirm-summary"></div>
+      <div style="display:flex;gap:10px">
+        <button class="pub-btn secondary" onclick="pubVoltar(1)" style="flex:0 0 auto;width:auto;padding:14px 20px">← Voltar</button>
+        <button class="pub-btn" onclick="pubConfirm()">Confirmar agendamento ✓</button>
+      </div>
+    </div>
+
+    <!-- PASSO 3: Sucesso -->
+    <div class="pub-step" id="pub-step-3" style="display:none">
+      <div class="success-wrap">
+        <div class="success-icon">✓</div>
+        <div class="success-title">Agendamento confirmado!</div>
+        <div class="success-sub">Seu horário foi reservado com sucesso.<br>Salve as informações abaixo. 👇</div>
+        <div class="confirm-box" id="success-summary"></div>
+        <a id="btn-whatsapp" href="#" target="_blank" class="pub-btn" style="display:block;margin-top:12px;text-align:center;text-decoration:none">
+          💬 Confirmar pelo WhatsApp
+        </a>
+        <button class="pub-btn secondary" onclick="pubReset()" style="margin-top:10px">
+          Fazer novo agendamento
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <p style="text-align:center;font-size:11px;color:var(--text3);margin-top:20px">
+    Powered by AgendaFácil · Sistema de agendamento online
+  </p>
+</div>
+
+<div class="notif" id="notif"></div>
+
+<script src="js/db.js"></script>
+<script src="js/publico.js"></script>
+</body>
+</html>
